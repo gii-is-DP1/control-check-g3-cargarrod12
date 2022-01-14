@@ -17,12 +17,7 @@ package org.springframework.samples.petclinic.pet;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -58,6 +53,11 @@ public class Visit extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "pet_id")
 	private Pet pet;
+
+
+	@ManyToOne(cascade= CascadeType.ALL)
+	@JoinColumn(referencedColumnName = "id")
+	private RecoveryRoom recoveryRoom;
 
 	/**
 	 * Creates a new instance of Visit for the current date
@@ -115,12 +115,12 @@ public class Visit extends BaseEntity {
 	}
 
 	public RecoveryRoom getRecoveryRoom() {
-		// To be implemented
-		return null;
+
+		return this.recoveryRoom;
 	}
 
 	public void setRecoveryRoom(RecoveryRoom room) {
-		// To be implemented
+		this.recoveryRoom = room;
 	}
 
 }

@@ -62,3 +62,8 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
 
+INSERT into recovery_room_type VALUES (1, 'room');
+INSERT into recovery_room_type VALUES (2, 'box');
+
+INSERT into recovery_room VALUES (1, 'Big room for dangerous animals', 6.5, true,1);
+INSERT into recovery_room VALUES (2, 'Medium box', 1.5, false, 2);
