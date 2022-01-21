@@ -1,6 +1,9 @@
 package org.springframework.samples.petclinic.recoveryroom;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -12,21 +15,19 @@ import org.springframework.samples.petclinic.model.BaseEntity;
 @Entity
 @Getter
 @Setter
-@Table(name = "recovery_room")
-public class RecoveryRoom  extends BaseEntity {
+public class RecoveryRoom extends BaseEntity {
 
+    @Size(min = 3, max = 50)
     @NotNull
-    @Size(max = 50, min = 3)
     String name;
 
-    @NotNull
     @Min(0)
+    @NotNull
     double size;
     @NotNull
     boolean secure;
 
-
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "roomTypeId",referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
+    @ManyToOne(optional = false)
     RecoveryRoomType roomType;
 }

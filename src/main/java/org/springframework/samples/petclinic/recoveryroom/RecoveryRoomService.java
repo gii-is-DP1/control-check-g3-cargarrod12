@@ -7,11 +7,8 @@ import java.util.List;
 
 @Service
 public class RecoveryRoomService {
-
     @Autowired
     RecoveryRoomRepository recoveryRoomRepository;
-
-
     public List<RecoveryRoom> getAll(){
         return recoveryRoomRepository.findAll();
     }

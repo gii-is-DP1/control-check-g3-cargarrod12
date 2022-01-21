@@ -11,19 +11,18 @@ import org.springframework.stereotype.Component;
 public class RecoveryRoomTypeFormatter implements Formatter<RecoveryRoomType>{
 
     @Autowired
-    RecoveryRoomService recServ;
+    private RecoveryRoomService rService;
 
     @Override
     public String print(RecoveryRoomType object, Locale locale) {
-        return object.name;
+        return object.getName();
     }
 
     @Override
     public RecoveryRoomType parse(String text, Locale locale) throws ParseException {
-        RecoveryRoomType rt = recServ.getRecoveryRoomType(text);
-        if(rt!= null && rt.name.equals(text)){
-        return rt;
-        }throw new ParseException("Recovery Room Type not found: "+ text, 0);
+        RecoveryRoomType rt = this.rService.getRecoveryRoomType(text);
+        if(rt != null && rt.name.equals(text)){
+            return rt;
+        } throw new ParseException("type not found: " + text, 0);}
     }
-    
-}
+
